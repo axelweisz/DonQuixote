@@ -15,6 +15,9 @@ namespace DonQuixote
         [SerializeField] private float _runTriggerDistance = 5f;
         [SerializeField] private float _speakingSuppressionDistance = 8f;
 
+        [Header("Debug")]
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
         [Header("Timers")]
         [SerializeField] private float _speakingDuration = 2f;
         [SerializeField] private float _speakingCooldownMin = 5f;
@@ -146,6 +149,7 @@ namespace DonQuixote
         {
             if (CurrentActionState == newState) return;
             CurrentActionState = newState;
+            ApplyDebugTint();
             OnActionStateChanged?.Invoke(CurrentActionState);
         }
 
@@ -160,7 +164,34 @@ namespace DonQuixote
                 _quixote?.TriggerLucidity();
             }
 
+            ApplyDebugTint();
             OnBehaviourStateChanged?.Invoke(CurrentBehaviourState);
+        }
+
+        private void ApplyDebugTint()
+        {
+            if (_spriteRenderer == null) return;
+
+            Color baseColor = CurrentActionState switch
+            {
+                ActionState.Idle     => new Color(0.2f, 0.75f, 0.3f),
+                ActionState.Walking  => new Color(0.3f, 0.85f, 0.35f),
+                ActionState.Riding   => new Color(0.1f, 0.6f, 0.2f),
+                ActionState.Running  => new Color(0.6f, 0.9f, 0.1f),
+                ActionState.Cowering => new Color(0.3f, 0.5f, 0.1f),
+                ActionState.Helping  => new Color(0.1f, 1f, 0.5f),
+                _                    => Color.green
+            };
+
+            // Behaviour overlay: Speaking = flash yellow, Worried = shift orange
+            baseColor = CurrentBehaviourState switch
+            {
+                BehaviourState.Speaking => Color.Lerp(baseColor, new Color(1f, 0.95f, 0.1f), 0.6f),
+                BehaviourState.Worried  => Color.Lerp(baseColor, new Color(1f, 0.4f, 0.1f), 0.5f),
+                _                       => baseColor
+            };
+
+            _spriteRenderer.color = baseColor;
         }
     }
 }

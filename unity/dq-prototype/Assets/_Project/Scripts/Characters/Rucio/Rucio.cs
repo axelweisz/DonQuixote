@@ -10,6 +10,9 @@ namespace DonQuixote
         [SerializeField] [Range(0f, 1f)] private float _stoppingChancePerSecond = 0.02f;
         [SerializeField] [Range(0f, 1f)] private float _brayingChance = 0.2f;
 
+        [Header("Debug")]
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
         [Header("Timers")]
         [SerializeField] private float _stoppingCoaxDuration = 4f;
         [SerializeField] private float _brayingDuration = 2f;
@@ -113,7 +116,22 @@ namespace DonQuixote
                     break;
             }
 
+            ApplyDebugTint();
             OnStateChanged?.Invoke(CurrentState);
+        }
+
+        private void ApplyDebugTint()
+        {
+            if (_spriteRenderer == null) return;
+            _spriteRenderer.color = CurrentState switch
+            {
+                DonkeyState.Grazing  => new Color(0.87f, 0.8f, 0.65f),
+                DonkeyState.Plodding => new Color(0.72f, 0.6f, 0.4f),
+                DonkeyState.Stopping => new Color(1f, 0.85f, 0.1f),
+                DonkeyState.Braying  => new Color(1f, 0.5f, 0.1f),
+                DonkeyState.Bolting  => new Color(0.85f, 0.1f, 0.1f),
+                _                    => Color.white
+            };
         }
     }
 }

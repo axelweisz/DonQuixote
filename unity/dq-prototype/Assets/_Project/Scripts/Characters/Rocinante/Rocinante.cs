@@ -19,6 +19,9 @@ namespace DonQuixote
         [SerializeField] [Range(0f, 1f)] private float _stumbleChancePerTick = 0.05f;
         [SerializeField] [Range(0f, 1f)] private float _spookChance = 0.4f;
 
+        [Header("Debug")]
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
         [Header("Timers")]
         [SerializeField] private float _spookedDuration = 1.5f;
         [SerializeField] private float _stumblingDuration = 1f;
@@ -151,7 +154,24 @@ namespace DonQuixote
                     break;
             }
 
+            ApplyDebugTint();
             OnStateChanged?.Invoke(CurrentState);
+        }
+
+        private void ApplyDebugTint()
+        {
+            if (_spriteRenderer == null) return;
+            _spriteRenderer.color = CurrentState switch
+            {
+                HorseState.Grazing   => new Color(0.76f, 0.6f, 0.42f),
+                HorseState.Trotting  => new Color(0.55f, 0.35f, 0.15f),
+                HorseState.Charging  => new Color(0.9f, 0.55f, 0.1f),
+                HorseState.Spooked   => new Color(1f, 0.9f, 0.1f),
+                HorseState.Stumbling => new Color(1f, 0.6f, 0.7f),
+                HorseState.Exhausted => new Color(0.35f, 0.3f, 0.25f),
+                HorseState.Knocked   => new Color(0.55f, 0.05f, 0.05f),
+                _                    => Color.white
+            };
         }
     }
 }

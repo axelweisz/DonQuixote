@@ -16,6 +16,9 @@ namespace DonQuixote
         [Header("Hitbox")]
         [SerializeField] private Collider2D _dragonHitbox;
 
+        [Header("Debug")]
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
         public WindmillState CurrentState { get; private set; } = WindmillState.Idle;
         private Transform _quixoteTransform;
 
@@ -90,6 +93,20 @@ namespace DonQuixote
             if (_windmillVisual != null) _windmillVisual.SetActive(!isDragon);
             if (_dragonVisual != null) _dragonVisual.SetActive(isDragon);
             if (_dragonHitbox != null) _dragonHitbox.enabled = isDragon;
+            ApplyDebugTint();
+        }
+
+        private void ApplyDebugTint()
+        {
+            if (_spriteRenderer == null) return;
+            _spriteRenderer.color = CurrentState switch
+            {
+                WindmillState.Idle     => new Color(0.4f, 0.4f, 0.4f),
+                WindmillState.Windmill => Color.white,
+                WindmillState.Dragon   => new Color(0.9f, 0.15f, 0.1f),
+                WindmillState.Frozen   => new Color(0.4f, 0.9f, 1f),
+                _                      => Color.white
+            };
         }
 
         public void OnHit()

@@ -24,6 +24,9 @@ namespace DonQuixote
         [SerializeField] private float _knockedDownDuration = 2f;
         [SerializeField] private float _recoveringDuration = 1f;
 
+        [Header("Debug")]
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
         public ActionState CurrentActionState { get; private set; } = ActionState.Idle;
         public PerceptionState CurrentPerceptionState { get; private set; } = PerceptionState.Delusion;
 
@@ -156,6 +159,7 @@ namespace DonQuixote
                     break;
             }
 
+            ApplyDebugTint();
             OnActionStateChanged?.Invoke(CurrentActionState);
         }
 
@@ -167,7 +171,32 @@ namespace DonQuixote
             if (newState == PerceptionState.Lucidity)
                 LuciditySystem.Instance?.TriggerLucidity();
 
+            ApplyDebugTint();
             OnPerceptionStateChanged?.Invoke(CurrentPerceptionState);
+        }
+
+        private void ApplyDebugTint()
+        {
+            if (_spriteRenderer == null) return;
+
+            Color actionColor = CurrentActionState switch
+            {
+                ActionState.Idle        => new Color(0.4f, 0.6f, 1f),
+                ActionState.Walking     => new Color(0.2f, 0.4f, 0.9f),
+                ActionState.Riding      => new Color(0.1f, 0.2f, 0.8f),
+                ActionState.Charging    => new Color(1f, 0.85f, 0.1f),
+                ActionState.Attacking   => new Color(1f, 0.5f, 0.1f),
+                ActionState.Stunned     => new Color(0.7f, 0.2f, 0.9f),
+                ActionState.KnockedDown => new Color(0.6f, 0.05f, 0.05f),
+                ActionState.Recovering  => new Color(0.7f, 0.7f, 1f),
+                _                       => Color.white
+            };
+
+            // Wash toward white during Lucidity
+            if (CurrentPerceptionState == PerceptionState.Lucidity)
+                actionColor = Color.Lerp(actionColor, Color.white, 0.5f);
+
+            _spriteRenderer.color = actionColor;
         }
 
         // LuciditySystem calls back here when timer expires
