@@ -1,0 +1,133 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Don Quixote — cross-machine interactions</title>
+<desc>Diagram showing how all seven state machines communicate via events and triggers.</desc>
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<style>
+text { font-family: sans-serif; fill: #2C2C2A; }
+.th  { font-size: 14px; font-weight: 500; }
+.ts  { font-size: 12px; font-weight: 400; }
+.teal-r   { fill:#E1F5EE; stroke:#0F6E56; }
+.coral-r  { fill:#FAECE7; stroke:#993C1D; }
+.purple-r { fill:#EEEDFE; stroke:#534AB7; }
+.amber-r  { fill:#FAEEDA; stroke:#854F0B; }
+.gray-t   { fill:#444441; }
+.teal-t   { fill:#085041; }
+.purple-t { fill:#3C3489; }
+.amber-t  { fill:#633806; }
+.coral-t  { fill:#712B13; }
+.bg       { fill:#ffffff; }
+.leg      { fill:none; stroke:#B4B2A9; }
+</style>
+</defs>
+
+<!-- Windmill: top center -->
+<rect x="240" y="30" width="160" height="46" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="th teal-t" x="320" y="48" text-anchor="middle" dominant-baseline="central">WindmillEntity</text>
+<text class="ts teal-t" x="320" y="65" text-anchor="middle" dominant-baseline="central">Windmill / Dragon / Frozen</text>
+
+<!-- Quixote Action: left -->
+<rect x="20" y="220" width="150" height="46" rx="8" stroke-width="0.5" class="purple-r"/>
+<text class="th purple-t" x="95" y="238" text-anchor="middle" dominant-baseline="central">Quixote action</text>
+<text class="ts purple-t" x="95" y="255" text-anchor="middle" dominant-baseline="central">Attacking / Stunned / KO</text>
+
+<!-- Quixote Perception: center -->
+<rect x="240" y="220" width="160" height="46" rx="8" stroke-width="0.5" class="purple-r"/>
+<text class="th purple-t" x="320" y="238" text-anchor="middle" dominant-baseline="central">Quixote perception</text>
+<text class="ts purple-t" x="320" y="255" text-anchor="middle" dominant-baseline="central">Delusion / Lucidity</text>
+
+<!-- Sancho behaviour: top left -->
+<rect x="20" y="30" width="160" height="46" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="th amber-t" x="100" y="48" text-anchor="middle" dominant-baseline="central">Sancho behaviour</text>
+<text class="ts amber-t" x="100" y="65" text-anchor="middle" dominant-baseline="central">Speaking / Worried</text>
+
+<!-- Sancho action: bottom left -->
+<rect x="20" y="420" width="150" height="46" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="th amber-t" x="95" y="438" text-anchor="middle" dominant-baseline="central">Sancho action</text>
+<text class="ts amber-t" x="95" y="455" text-anchor="middle" dominant-baseline="central">Cowering / Helping</text>
+
+<!-- Rocinante: bottom right -->
+<rect x="430" y="420" width="130" height="46" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="th teal-t" x="495" y="438" text-anchor="middle" dominant-baseline="central">Rocinante</text>
+<text class="ts teal-t" x="495" y="455" text-anchor="middle" dominant-baseline="central">Stumbling / Knocked</text>
+
+<!-- Rucio: right -->
+<rect x="460" y="220" width="100" height="46" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="th teal-t" x="510" y="238" text-anchor="middle" dominant-baseline="central">Rucio</text>
+<text class="ts teal-t" x="510" y="255" text-anchor="middle" dominant-baseline="central">Stopping / Bolting</text>
+
+<!-- ── ARROWS ── -->
+
+<!-- 1. Sancho behaviour Speaking → Quixote Perception Lucidity -->
+<path d="M180 53 L238 230" fill="none" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="178" y="118" width="96" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="226" y="130" text-anchor="middle">forces Lucidity</text>
+
+<!-- 2. Quixote Perception → Windmill Frozen -->
+<path d="M320 220 L320 78" fill="none" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="324" y="130" width="74" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="361" y="142" text-anchor="start">→ Frozen</text>
+
+<!-- 3. Quixote Action shock → Quixote Perception Lucidity -->
+<path d="M170 243 L238 243" fill="none" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="174" y="232" width="60" height="16" rx="4" class="bg"/>
+<text class="ts gray-t" x="204" y="243" text-anchor="middle">shock</text>
+
+<!-- 4. hit Dragon = score -->
+<path d="M95 220 L258 78" fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+<rect x="118" y="128" width="100" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="168" y="140" text-anchor="middle">hit Dragon = score</text>
+
+<!-- 5. hit Windmill = Stunned -->
+<path d="M240 76 L140 220" fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+<rect x="124" y="168" width="112" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="180" y="180" text-anchor="middle">hit Windmill = Stunned</text>
+
+<!-- 6. Dragon near Rocinante → Spooked -->
+<path d="M380 65 L460 230" fill="none" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+<rect x="400" y="130" width="82" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="441" y="142" text-anchor="middle">→ Spooked</text>
+
+<!-- 7. Dragon near Rucio → Braying -->
+<path d="M400 53 L480 218" fill="none" stroke="#D85A30" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<rect x="432" y="108" width="82" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="473" y="120" text-anchor="middle">→ Braying</text>
+
+<!-- 8. Rocinante Stumbling → Quixote KnockedDown -->
+<path d="M430 440 L172 268" fill="none" stroke="#993C1D" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="256" y="336" width="108" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="310" y="348" text-anchor="middle">→ Knocked down</text>
+
+<!-- 9. Quixote KO → Sancho action Helping -->
+<path d="M95 266 L95 418" fill="none" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arr)"/>
+<rect x="40" y="330" width="70" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="75" y="342" text-anchor="middle">→ Helping</text>
+
+<!-- 10. Quixote KO → Sancho behaviour Worried -->
+<path d="M70 266 L70 350 L50 350 L50 78" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<rect x="36" y="180" width="68" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="70" y="192" text-anchor="middle">→ Worried</text>
+
+<!-- 11. Rucio Stopping → suppresses Sancho Speaking (distance) -->
+<path d="M460 255 L182 75" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<rect x="276" y="148" width="96" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="324" y="160" text-anchor="middle">distance suppress</text>
+
+<!-- 12. Cowering suppresses Speaking -->
+<path d="M95 420 L95 290 L20 290" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3"/>
+<path d="M20 290 L20 78 L18 78" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<rect x="36" y="350" width="82" height="18" rx="4" class="bg"/>
+<text class="ts gray-t" x="77" y="362" text-anchor="middle">suppresses Speaking</text>
+
+<!-- LEGEND -->
+<rect x="40" y="600" width="600" height="60" rx="8" stroke-width="0.5" class="leg"/>
+<text class="ts gray-t" x="60" y="620" text-anchor="start">Event type:</text>
+<line x1="140" y1="618" x2="176" y2="618" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="182" y="622">Triggers state change</text>
+<line x1="340" y1="618" x2="376" y2="618" stroke="#D85A30" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="382" y="622">Conditional outcome</text>
+<line x1="140" y1="642" x2="176" y2="642" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="182" y="646">Suppresses / side effect</text>
+</svg>

@@ -1,0 +1,192 @@
+<svg width="100%" viewBox="0 0 680 1320" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Don Quixote — state machines for all entities</title>
+<desc>State machine diagrams for WindmillEntity, Quixote Action, Quixote Perception, Sancho Action, Sancho Behaviour, Rocinante, and Rucio.</desc>
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<style>
+text { font-family: sans-serif; fill: #2C2C2A; }
+.th  { font-size: 14px; font-weight: 500; }
+.ts  { font-size: 12px; font-weight: 400; }
+.teal-r   { fill:#E1F5EE; stroke:#0F6E56; }
+.coral-r  { fill:#FAECE7; stroke:#993C1D; }
+.purple-r { fill:#EEEDFE; stroke:#534AB7; }
+.amber-r  { fill:#FAEEDA; stroke:#854F0B; }
+.gray-r   { fill:#F1EFE8; stroke:#5F5E5A; }
+.teal-t   { fill:#085041; }
+.coral-t  { fill:#712B13; }
+.purple-t { fill:#3C3489; }
+.amber-t  { fill:#633806; }
+.gray-t   { fill:#444441; }
+.leg { fill:none; stroke:#B4B2A9; }
+</style>
+</defs>
+
+<!-- ── WINDMILL ── y=30 -->
+<rect x="40" y="30" width="180" height="36" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="th teal-t" x="130" y="48" text-anchor="middle" dominant-baseline="central">WindmillEntity</text>
+<rect x="40" y="84" width="76" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="78" y="101" text-anchor="middle" dominant-baseline="central">Idle</text>
+<rect x="128" y="84" width="90" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="173" y="101" text-anchor="middle" dominant-baseline="central">Windmill</text>
+<rect x="230" y="84" width="76" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="268" y="101" text-anchor="middle" dominant-baseline="central">Dragon</text>
+<rect x="318" y="84" width="76" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="356" y="101" text-anchor="middle" dominant-baseline="central">Frozen</text>
+<line x1="116" y1="101" x2="126" y2="101" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M218 96 L228 96" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M230 108 L220 108" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M268 84 L356 84 L356 82" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="312" y="76" text-anchor="middle">lucidity</text>
+
+<!-- ── QUIXOTE ACTION ── y=148 -->
+<rect x="40" y="148" width="200" height="36" rx="8" stroke-width="0.5" class="purple-r"/>
+<text class="th purple-t" x="140" y="166" text-anchor="middle" dominant-baseline="central">Quixote — action</text>
+<rect x="40" y="202" width="58" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="69" y="219" text-anchor="middle" dominant-baseline="central">Idle</text>
+<rect x="110" y="202" width="74" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="147" y="219" text-anchor="middle" dominant-baseline="central">Walking</text>
+<rect x="196" y="202" width="64" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="228" y="219" text-anchor="middle" dominant-baseline="central">Riding</text>
+<rect x="272" y="202" width="78" height="34" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="ts amber-t" x="311" y="219" text-anchor="middle" dominant-baseline="central">Charging</text>
+<rect x="362" y="202" width="78" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="401" y="219" text-anchor="middle" dominant-baseline="central">Attacking</text>
+<rect x="110" y="254" width="70" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="145" y="271" text-anchor="middle" dominant-baseline="central">Stunned</text>
+<rect x="192" y="254" width="108" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="246" y="271" text-anchor="middle" dominant-baseline="central">Knocked down</text>
+<rect x="312" y="254" width="90" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="357" y="271" text-anchor="middle" dominant-baseline="central">Recovering</text>
+<line x1="98" y1="219" x2="108" y2="219" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="184" y1="219" x2="194" y2="219" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="260" y1="219" x2="270" y2="219" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="350" y1="219" x2="360" y2="219" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M401 236 L401 246 L180 246 L180 252" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M311 236 L311 244 L246 244 L246 252" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="180" y1="271" x2="190" y2="271" stroke="#888780" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="300" y1="271" x2="310" y2="271" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M357 288 L357 300 L69 300 L69 238" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+
+<!-- ── QUIXOTE PERCEPTION ── y=320 -->
+<rect x="40" y="320" width="220" height="36" rx="8" stroke-width="0.5" class="purple-r"/>
+<text class="th purple-t" x="150" y="338" text-anchor="middle" dominant-baseline="central">Quixote — perception</text>
+<rect x="40" y="374" width="100" height="36" rx="8" stroke-width="0.5" class="purple-r"/>
+<text class="ts purple-t" x="90" y="392" text-anchor="middle" dominant-baseline="central">Delusion</text>
+<rect x="182" y="374" width="90" height="36" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="227" y="392" text-anchor="middle" dominant-baseline="central">Lucidity</text>
+<path d="M140 384 L180 384" fill="none" stroke="#534AB7" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M182 402 L142 402" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="161" y="379" text-anchor="middle">Sancho speaks</text>
+<text class="ts gray-t" x="161" y="414" text-anchor="middle">timer expires</text>
+
+<!-- ── SANCHO ACTION ── y=440 -->
+<rect x="40" y="440" width="180" height="36" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="th amber-t" x="130" y="458" text-anchor="middle" dominant-baseline="central">Sancho — action</text>
+<rect x="40" y="494" width="56" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="68" y="511" text-anchor="middle" dominant-baseline="central">Idle</text>
+<rect x="108" y="494" width="74" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="145" y="511" text-anchor="middle" dominant-baseline="central">Walking</text>
+<rect x="194" y="494" width="60" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="224" y="511" text-anchor="middle" dominant-baseline="central">Riding</text>
+<rect x="266" y="494" width="74" height="34" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="ts amber-t" x="303" y="511" text-anchor="middle" dominant-baseline="central">Running</text>
+<rect x="40" y="546" width="82" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="81" y="563" text-anchor="middle" dominant-baseline="central">Cowering</text>
+<rect x="134" y="546" width="74" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="171" y="563" text-anchor="middle" dominant-baseline="central">Helping</text>
+<line x1="96" y1="511" x2="106" y2="511" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="182" y1="511" x2="192" y2="511" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="254" y1="511" x2="264" y2="511" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M145 528 L145 538 L81 538 L81 544" fill="none" stroke="#D85A30" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<path d="M171 528 L171 560 L208 560 L208 580 L68 580 L68 528" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M303 528 L303 580 L171 580 L171 582" fill="none" stroke="#BA7517" stroke-width="1" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="420" y="511" text-anchor="start">Quixote KO</text>
+<path d="M416 563 L210 563" fill="none" stroke="#1D9E75" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="420" y="558" text-anchor="start">→ Helping</text>
+
+<!-- ── SANCHO BEHAVIOUR ── y=610 -->
+<rect x="40" y="610" width="200" height="36" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="th amber-t" x="140" y="628" text-anchor="middle" dominant-baseline="central">Sancho — behaviour</text>
+<rect x="40" y="664" width="56" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="68" y="681" text-anchor="middle" dominant-baseline="central">Idle</text>
+<rect x="108" y="664" width="82" height="34" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="ts amber-t" x="149" y="681" text-anchor="middle" dominant-baseline="central">Speaking</text>
+<rect x="202" y="664" width="74" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="239" y="681" text-anchor="middle" dominant-baseline="central">Worried</text>
+<line x1="96" y1="681" x2="106" y2="681" stroke="#BA7517" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M190 681 L200 681" fill="none" stroke="#993C1D" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="197" y="675" text-anchor="middle">Qx KO</text>
+<path d="M149 698 L149 712 L68 712 L68 700" fill="none" stroke="#BA7517" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M239 698 L239 720 L68 720 L68 700" fill="none" stroke="#993C1D" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="320" y="675" text-anchor="start">suppressed if</text>
+<text class="ts gray-t" x="320" y="688" text-anchor="start">Cowering or far</text>
+<line x1="310" y1="681" x2="192" y2="681" stroke="#888780" stroke-width="0.8" stroke-dasharray="3 3"/>
+
+<!-- ── ROCINANTE ── y=750 -->
+<rect x="40" y="750" width="120" height="36" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="th teal-t" x="100" y="768" text-anchor="middle" dominant-baseline="central">Rocinante</text>
+<rect x="40" y="804" width="74" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="77" y="821" text-anchor="middle" dominant-baseline="central">Grazing</text>
+<rect x="126" y="804" width="76" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="164" y="821" text-anchor="middle" dominant-baseline="central">Trotting</text>
+<rect x="214" y="804" width="78" height="34" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="ts amber-t" x="253" y="821" text-anchor="middle" dominant-baseline="central">Charging</text>
+<rect x="304" y="804" width="74" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="341" y="821" text-anchor="middle" dominant-baseline="central">Spooked</text>
+<rect x="390" y="804" width="84" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="432" y="821" text-anchor="middle" dominant-baseline="central">Exhausted</text>
+<rect x="126" y="856" width="88" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="170" y="873" text-anchor="middle" dominant-baseline="central">Stumbling</text>
+<rect x="226" y="856" width="78" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="265" y="873" text-anchor="middle" dominant-baseline="central">Knocked</text>
+<line x1="114" y1="821" x2="124" y2="821" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="202" y1="821" x2="212" y2="821" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="292" y1="821" x2="302" y2="821" stroke="#D85A30" stroke-width="1" marker-end="url(#arr)"/>
+<line x1="378" y1="821" x2="388" y2="821" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M253 838 L253 848 L170 848 L170 854" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M292 832 L265 832 L265 854" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M341 838 L341 900 L164 900 L164 892" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<path d="M170 890 L170 908 L147 908 L147 840" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M265 890 L265 916 L77 916 L77 840" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M432 838 L432 924 L164 924 L164 910" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+
+<!-- ── RUCIO ── y=950 -->
+<rect x="40" y="950" width="80" height="36" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="th teal-t" x="80" y="968" text-anchor="middle" dominant-baseline="central">Rucio</text>
+<rect x="40" y="1004" width="74" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="77" y="1021" text-anchor="middle" dominant-baseline="central">Grazing</text>
+<rect x="126" y="1004" width="76" height="34" rx="8" stroke-width="0.5" class="teal-r"/>
+<text class="ts teal-t" x="164" y="1021" text-anchor="middle" dominant-baseline="central">Plodding</text>
+<rect x="214" y="1004" width="76" height="34" rx="8" stroke-width="0.5" class="gray-r"/>
+<text class="ts gray-t" x="252" y="1021" text-anchor="middle" dominant-baseline="central">Stopping</text>
+<rect x="302" y="1004" width="72" height="34" rx="8" stroke-width="0.5" class="amber-r"/>
+<text class="ts amber-t" x="338" y="1021" text-anchor="middle" dominant-baseline="central">Braying</text>
+<rect x="386" y="1004" width="66" height="34" rx="8" stroke-width="0.5" class="coral-r"/>
+<text class="ts coral-t" x="419" y="1021" text-anchor="middle" dominant-baseline="central">Bolting</text>
+<line x1="114" y1="1021" x2="124" y2="1021" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M202 1015 L212 1015" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<path d="M214 1027 L204 1027" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<path d="M290 1021 L300 1021" fill="none" stroke="#BA7517" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M374 1021 L384 1021" fill="none" stroke="#D85A30" stroke-width="1" marker-end="url(#arr)"/>
+<path d="M338 1038 L338 1060 L164 1060 L164 1040" fill="none" stroke="#BA7517" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<path d="M419 1038 L419 1068 L164 1068 L164 1060" fill="none" stroke="#D85A30" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="164" y="1092" text-anchor="middle">Bolting: only if Rocinante also Spooked</text>
+
+<!-- LEGEND -->
+<rect x="40" y="1130" width="600" height="60" rx="8" stroke-width="0.5" class="leg"/>
+<text class="ts gray-t" x="60" y="1150" text-anchor="start">Legend:</text>
+<rect x="110" y="1140" width="24" height="14" rx="4" class="teal-r" stroke-width="0.5"/>
+<text class="ts gray-t" x="140" y="1151">Active / moving</text>
+<rect x="240" y="1140" width="24" height="14" rx="4" class="coral-r" stroke-width="0.5"/>
+<text class="ts gray-t" x="270" y="1151">Impact / penalty</text>
+<rect x="370" y="1140" width="24" height="14" rx="4" class="amber-r" stroke-width="0.5"/>
+<text class="ts gray-t" x="400" y="1151">Action / trigger</text>
+<rect x="490" y="1140" width="24" height="14" rx="4" class="gray-r" stroke-width="0.5"/>
+<text class="ts gray-t" x="520" y="1151">Neutral / rest</text>
+<line x1="110" y1="1172" x2="150" y2="1172" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="156" y="1176">Normal transition</text>
+<line x1="310" y1="1172" x2="350" y2="1172" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr)"/>
+<text class="ts gray-t" x="356" y="1176">Conditional / timed return</text>
+</svg>
